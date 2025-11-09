@@ -9,3 +9,4 @@ class Solution:
             else:
                 lookup[num] = 1    
         return [key for key, _ in sorted(lookup.items(), key=lambda item: item[1], reverse=True)[:k]]
+        
