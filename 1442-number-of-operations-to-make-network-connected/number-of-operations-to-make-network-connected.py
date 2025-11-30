@@ -13,17 +13,11 @@ class Solution:
         def union(a,b):
             rootA = find(a)
             rootB = find(b)
-            if rootA==rootB:
-                return
-            if rank[rootA] < rank[rootB]:
-                parent[rootA] = rootB
-            elif rank[rootA] > rank[rootB]:
-                parent[rootB] = rootA
-            else:
-                parent[rootB] = rootA
-                rank[rootA] += 1
+            if rootA!=rootB:
+                parent[rootA]=rootB
+                
         parent=[i for i in range(n)]
-        rank = [0] * n
+
         for a,b in connections:
             union(a,b)
         for c in range(n):
