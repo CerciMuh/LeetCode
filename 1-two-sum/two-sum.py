@@ -1,12 +1,10 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        hashmap = {}
-        result = []
+        mp = {} 
         for i in range(len(nums)):
-            curr = nums[i]
-            if target - curr not in hashmap:
-                hashmap[curr] = i 
-            else:
-                return [i,hashmap[target-curr]]
-            
-            
+            value = nums[i]
+            if value in mp:
+                return [mp[value], i]
+            need = target - value
+            mp[need] = i
+        return []
