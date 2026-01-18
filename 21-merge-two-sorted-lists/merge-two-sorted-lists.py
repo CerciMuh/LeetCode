@@ -5,22 +5,31 @@
 #         self.next = next
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        #create an empty linked list 
+        #get a while loop with two conditions head (curr1) of list 1 and head(curr2) of list two 
 
-        dummy = ListNode()
+        #inside the while loop we will compare the two nodes now 
+        #if curr1 < curr2 insert curr1 and advance it
+        #if curr 2 < curr1 insert curr2 and advance it. 
+        #we will keep doing this till one list finished and if one list finished before the other, just insert the other fully 
         
-        tail = dummy 
-        while (list1 and list2):
+        sortedListHead = ListNode(0)
+        sortedListTail = sortedListHead
+        curr1 = list1
+        curr2 = list2
 
-            if list1.val < list2.val:
-                tail.next = list1
-                list1=list1.next
-            else :
-                tail.next = list2
-                list2 = list2.next
-            tail = tail.next
+        while curr1 and curr2:
+            if curr1.val<curr2.val:
+                sortedListTail.next = curr1
+                sortedListTail = sortedListTail.next 
+                curr1=curr1.next
+            else:
+                sortedListTail.next = curr2
+                sortedListTail = sortedListTail.next
+                curr2=curr2.next
+        if curr1:
+            sortedListTail.next =curr1
+        else: 
+            sortedListTail.next = curr2
 
-        if list1:
-            tail.next=list1
-        elif list2:
-            tail.next = list2        
-        return dummy.next        
+        return sortedListHead.next
