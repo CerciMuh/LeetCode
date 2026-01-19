@@ -6,12 +6,18 @@
 #         self.right = right
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        #we need to get to the absolute bottom of a root then once we stop getting bottoms we flip
+        #im guessing a recursive approach would work best for this? like a dfs 
         if not root:
             return None
-
-        root.left, root.right = root.right, root.left
-
-        self.invertTree(root.left)
-        self.invertTree(root.right)
-
+        queue = []
+        queue.append(root)
+        
+        while queue:
+            node = queue.pop()
+            node.left, node.right = node.right, node.left
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
         return root
